@@ -1,0 +1,34 @@
+{
+	"usuario":[
+		{
+			"id":"0001",
+			"contrasena":"0001a",
+			"correo":"carlos@email.com",
+			"nombre":"Carlos",
+			"ciudad_id":"001"
+		},
+		{
+			"id":"0002",
+			"contrasena":"0002b",
+			"correo":"camila@email.com",
+			"nombre":"Camila",
+			"ciudad_id":"002"		
+		},
+		{
+			"id":"0003",
+			"contrasena":"0003a",
+			"correo":"juan@email.com",
+			"direccion":"Avenida Siempreviva #742",
+			"nombre":"Juan",
+			"ciudad_id":"001"		
+		},
+		{
+			"id":"0004",
+			"contrasena":"0004b",
+			"correo":"camila@email.com",
+			"direccion":"Calle Falsa #123",
+			"nombre":"Camila",
+			"ciudad_id":"001"
+		}
+	]
+}
