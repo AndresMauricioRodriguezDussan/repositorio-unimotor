@@ -1,0 +1,29 @@
+{
+	"modelo":[
+		{
+			"id":"0001",
+			"nombre":"Picanto XTREME",
+			"marca_id":"001"
+		},
+		{
+			"id":"0002",
+			"nombre":"Rio VIBRANT",
+			"marca_id":"001"			
+		},
+		{
+			"id":"0003",
+			"nombre":"Amarok TRENDLINE T",
+			"marca_id":"002"
+		},
+		{
+			"id":"0004",
+			"nombre":"Aveo SEDAN",
+			"marca_id":"003"
+		},
+		{
+			"id":"0005",
+			"nombre":"Diavel",
+			"marca_id":"010"
+		}
+	]
+}

@@ -1,0 +1,134 @@
+{
+	"vehiculo": [
+		{
+			"id": "0001",
+			"anio": 2013,
+			"color": "PLATA",
+			"descripcion": "Full equipo, buen estado general, documentos vigentes hasta septiembre 2021. Acepto vehiculo en parte de pago.",
+			"kilometraje": 75000,
+			"precio": 20900000.00,
+			"TIPOCOMBUSTIBLE": "GASOLINA",
+			"TIPOVEHICULO": "CARRO",
+			"TRANSMISION": "MECANICA",
+			"ciudad_id": "001",
+			"modelo_id": "0001",
+			"usuario_id": "0001"
+		},
+		{
+			"id": "0002",
+			"anio": 2020,
+			"color": "PLATA",
+			"descripcion": "camara de reversa, rin 17 de lujo, mandos de radio en el timon, computador abordo, sistema de entretenimiento con apple car play y android auto.",
+			"kilometraje": 0,
+			"precio": 57290000.00,
+			"TIPOCOMBUSTIBLE": "GASOLINA",
+			"TIPOVEHICULO": "CARRO",
+			"TRANSMISION": "MECANICA",
+			"ciudad_id": "002",
+			"modelo_id": "0002",
+			"usuario_id": "0002"
+		},
+		{
+			"id": "0003",
+			"anio": 2020,
+			"color": "BLANCO",
+			"kilometraje": 0,
+			"precio": 87990000.00,
+			"TIPOCOMBUSTIBLE": "DIESEL",
+			"TIPOVEHICULO": "CAMIONETA",
+			"TRANSMISION": "MECANICA",
+			"ciudad_id": "001",
+			"modelo_id": "0003",
+			"usuario_id": "0003"
+		},
+		{
+			"id": "0004",
+			"anio": 2008,
+			"color": "NEGRO",
+			"kilometraje": 174000,
+			"precio": 16000000.00,
+			"TIPOCOMBUSTIBLE": "GASOLINA",
+			"TIPOVEHICULO": "CARRO",
+			"TRANSMISION": "MECANICA",
+			"ciudad_id": "004",
+			"modelo_id": "0004",
+			"usuario_id": "0004"
+		}
+	],
+	"vehiculo_fotos": [
+		{
+			"Vehiculo_id": "0001",
+			"fotos_vehiculo": "https://http2.mlstatic.com/kia-picanto-ion-xtreme-1250-full-equipo-D_NQ_NP_734230-MCO33077987659_122019-F.webp"
+		},
+		{
+			"Vehiculo_id": "0002",
+			"fotos_vehiculo": "https://http2.mlstatic.com/kia-rio-vibrant-sedan14l-2020-at-0-km-D_NQ_NP_805101-MCO32789955068_112019-F.webp"
+		},
+		{
+			"Vehiculo_id": "0003",
+			"fotos_vehiculo": "https://http2.mlstatic.com/amarok-trendline-t-doble-cabina-D_NQ_NP_660204-MCO42789295236_072020-F.webp"
+		},
+		{
+			"Vehiculo_id": "0004",
+			"fotos_vehiculo": "https://apollo-virginia.akamaized.net/v1/files/wk99pyzvy5z62-CO/image;s=850x0"
+		}
+	],
+	"vehiculo_caracteristica":[
+		{
+			"vehiculos_id": "0001",
+			"caracteristicas_id": "002"	
+		},
+		{
+			"vehiculos_id": "0001",
+			"caracteristicas_id": "003"	
+		},
+		{
+			"vehiculos_id": "0001",
+			"caracteristicas_id": "004"	
+		},
+		{
+			"vehiculos_id": "0002",
+			"caracteristicas_id": "001"	
+		},
+		{
+			"vehiculos_id": "0002",
+			"caracteristicas_id": "002"	
+		},
+		{
+			"vehiculos_id": "0002",
+			"caracteristicas_id": "003"	
+		},
+		{
+			"vehiculos_id": "0002",
+			"caracteristicas_id": "004"	
+		},
+		{
+			"vehiculos_id": "0003",
+			"caracteristicas_id": "001"	
+		},
+		{
+			"vehiculos_id": "0003",
+			"caracteristicas_id": "002"	
+		},
+		{
+			"vehiculos_id": "0003",
+			"caracteristicas_id": "003"	
+		},
+		{
+			"vehiculos_id": "0003",
+			"caracteristicas_id": "004"	
+		},
+		{
+			"vehiculos_id": "0004",
+			"caracteristicas_id": "002"	
+		},
+		{
+			"vehiculos_id": "0004",
+			"caracteristicas_id": "003"	
+		},
+		{
+			"vehiculos_id": "0004",
+			"caracteristicas_id": "004"	
+		}
+	]
+}

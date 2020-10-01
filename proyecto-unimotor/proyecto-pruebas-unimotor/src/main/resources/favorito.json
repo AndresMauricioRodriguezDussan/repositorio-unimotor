@@ -1,0 +1,24 @@
+{
+	"favorito":[
+		{
+			"id":"10001",
+			"usuario_id":"0001",
+			"vehiculo_id":"0002"
+		},
+		{
+			"id":"10002",
+			"usuario_id":"0002",
+			"vehiculo_id":"0003"
+		},
+		{
+			"id":"10003",
+			"usuario_id":"0003",
+			"vehiculo_id":"0004"		
+		},
+		{
+			"id":"10004",
+			"usuario_id":"0004",
+			"vehiculo_id":"0001"		
+		}
+	]
+}

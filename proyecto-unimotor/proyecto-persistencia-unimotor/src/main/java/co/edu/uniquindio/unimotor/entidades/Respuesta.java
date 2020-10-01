@@ -2,6 +2,8 @@ package co.edu.uniquindio.unimotor.entidades;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.Date;
+
 import javax.persistence.*;
 
 /**
@@ -20,6 +22,10 @@ public class Respuesta implements Serializable {
 	@Column(name="descripcion",nullable=false)
 	private String descripcion;
 	
+	@Temporal(TemporalType.DATE)
+	@Column(name="fecha",nullable=false)
+	private Date fecha;
+	
 	@ManyToOne
 	@JoinColumn(name="pregunta_id",nullable=false)
 	private Pregunta pregunta;
@@ -28,7 +34,14 @@ public class Respuesta implements Serializable {
 
 	public Respuesta() {
 		super();
-	}   
+	}
+	
+	public Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
 	public Pregunta getPregunta() {
 		return pregunta;
 	}

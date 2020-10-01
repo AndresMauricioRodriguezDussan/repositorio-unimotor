@@ -1,0 +1,20 @@
+{
+	"marca":[
+		{
+			"id":"001",
+			"nombre":"Kia"
+		},
+		{
+			"id":"002",
+			"nombre":"Volkswagen"
+		},
+		{
+			"id":"003",
+			"nombre":"Chevrolet"
+		},
+		{
+			"id":"010",
+			"nombre":"Ducati"
+		}
+	]
+}

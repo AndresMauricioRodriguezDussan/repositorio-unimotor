@@ -14,7 +14,7 @@ public class Favorito implements Serializable {
 
 	   
 	@Id
-	@Column(name ="id")
+	@Column(name ="id",length=10)
 	private String id;
 	
 	@ManyToOne

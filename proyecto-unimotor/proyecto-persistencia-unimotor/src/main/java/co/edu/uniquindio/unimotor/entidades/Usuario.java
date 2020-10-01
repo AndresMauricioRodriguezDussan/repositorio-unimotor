@@ -32,7 +32,7 @@ public class Usuario implements Serializable {
 	private String direccion;
 	
 	@ElementCollection
-	@Column(name="telefonos_usuario")
+	@JoinColumn(name="telefonos_usuario",nullable=false)
 	private Map<String,Integer> telefonos;
 
 	@ManyToOne

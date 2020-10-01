@@ -26,7 +26,7 @@ public class Vehiculo implements Serializable {
 	private String descripcion;
 	
 	@Column(name="kilometraje",nullable=false)
-	private double kilometraje;
+	private int kilometraje;
 	
 	@Column(name="anio",nullable=false)
 	private int anio;
@@ -188,11 +188,11 @@ public class Vehiculo implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}   
-	public double getKilometraje() {
+	public int getKilometraje() {
 		return this.kilometraje;
 	}
 
-	public void setKilometraje(double kilometraje) {
+	public void setKilometraje(int kilometraje) {
 		this.kilometraje = kilometraje;
 	}   
 	public int getAnio() {

@@ -1,0 +1,30 @@
+{
+	"respuesta":[
+		{
+			"id":"0001",
+			"descripcion":"tiene 5 puertas",
+			"fecha":"2020-03-16",
+			"pregunta_id":"1234"
+		},
+		{
+			"id":"0002",
+			"descripcion":"si claro, hoy esta bien?",
+			"fecha":"2020-05-06",
+			"pregunta_id":"1235"
+		},
+		{
+			"id":"0003",
+			"descripcion":"perfecto",
+			"fecha":"2020-05-06",
+			"pregunta_id":"1235"
+		},
+		{
+		
+			"id":"0004",
+			"descripcion":"tiene una caja acustica sony xplot 2000",
+			"fecha":"2020-07-21",
+			"pregunta_id":"1236"	
+		}
+	]
+	
+}
