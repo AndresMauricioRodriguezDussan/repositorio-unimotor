@@ -8,7 +8,8 @@ import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Respuesta
- *
+ * @author Andres Mauricio Rodriguez Dussan
+ * @date 1/10/2020
  */
 @Entity
 
@@ -36,6 +37,14 @@ public class Respuesta implements Serializable {
 		super();
 	}
 	
+	public Respuesta(String id, String descripcion, Date fecha, Pregunta pregunta) {
+		super();
+		this.id = id;
+		this.descripcion = descripcion;
+		this.fecha = fecha;
+		this.pregunta = pregunta;
+	}
+
 	public Date getFecha() {
 		return fecha;
 	}

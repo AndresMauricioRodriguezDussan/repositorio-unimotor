@@ -8,7 +8,8 @@ import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Modelo
- *
+ * @author Andres Mauricio Rodriguez Dussan
+ * @date 1/10/2020
  */
 @Entity
 
@@ -33,7 +34,15 @@ public class Modelo implements Serializable {
 
 	public Modelo() {
 		super();
-	}   
+	}
+	
+	public Modelo(String id, String nombre, Marca marca) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.marca = marca;
+	}
+
 	public String getId() {
 		return this.id;
 	}

@@ -33,27 +33,27 @@
 	],
 	"usuario_telefonos":[
 		{
-			"Usuario_id":"001",
+			"Usuario_id":"0001",
 			"TELEFONOS":3122867662,
 			"TELEFONOS_KEY":"celular"
 		},
 		{
-			"Usuario_id":"001",
+			"Usuario_id":"0001",
 			"TELEFONOS":3122867,
 			"TELEFONOS_KEY":"casa"		
 		},
 		{
-			"Usuario_id":"002",
+			"Usuario_id":"0002",
 			"TELEFONOS":3122867663,
 			"TELEFONOS_KEY":"celular"
 		},
 		{
-			"Usuario_id":"003",
+			"Usuario_id":"0003",
 			"TELEFONOS":30157423,
 			"TELEFONOS_KEY":"casa"
 		},
 		{
-			"Usuario_id":"004",
+			"Usuario_id":"0004",
 			"TELEFONOS":313667530,
 			"TELEFONOS_KEY":"celular"
 		}		

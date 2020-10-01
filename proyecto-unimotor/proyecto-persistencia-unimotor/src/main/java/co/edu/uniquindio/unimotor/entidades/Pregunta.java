@@ -9,7 +9,8 @@ import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Pregunta
- *
+ * @author Andres Mauricio Rodriguez Dussan
+ * @date 1/10/2020
  */
 @Entity
 
@@ -42,7 +43,17 @@ public class Pregunta implements Serializable {
 
 	public Pregunta() {
 		super();
-	}   
+	}
+	
+	public Pregunta(String id, String descripcion, Date fecha, Vehiculo vehiculo, Usuario usuario) {
+		super();
+		this.id = id;
+		this.descripcion = descripcion;
+		this.fecha = fecha;
+		this.vehiculo = vehiculo;
+		this.usuario = usuario;
+	}
+
 	public Vehiculo getVehiculo() {
 		return vehiculo;
 	}

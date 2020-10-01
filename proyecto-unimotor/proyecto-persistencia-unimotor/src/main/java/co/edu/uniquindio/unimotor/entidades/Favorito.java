@@ -6,7 +6,8 @@ import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Favorito
- *
+ * @author Andres Mauricio Rodriguez Dussan
+ * @date 1/10/2020
  */
 @Entity
 
@@ -31,6 +32,14 @@ public class Favorito implements Serializable {
 	public Favorito() {
 		super();
 	}
+	
+	public Favorito(String id, Usuario usuario, Vehiculo vehiculo) {
+		super();
+		this.id = id;
+		this.usuario = usuario;
+		this.vehiculo = vehiculo;
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}

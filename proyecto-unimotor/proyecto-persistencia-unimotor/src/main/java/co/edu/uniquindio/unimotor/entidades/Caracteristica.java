@@ -8,7 +8,8 @@ import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Caracteristica
- *
+ * @author Andres Mauricio Rodriguez Dussan
+ * @date 1/10/2020
  */
 @Entity
 
@@ -30,11 +31,15 @@ public class Caracteristica implements Serializable {
 		super();
 	}
 	
-	
+	public Caracteristica(String id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
 	public List<Vehiculo> getVehiculos() {
 		return vehiculos;
 	}
-
 
 	public void setVehiculos(List<Vehiculo> vehiculos) {
 		this.vehiculos = vehiculos;
@@ -81,6 +86,12 @@ public class Caracteristica implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Caracteristica [id=" + id + ", nombre=" + nombre + ", vehiculos=" + vehiculos + "]";
 	}
    
 	

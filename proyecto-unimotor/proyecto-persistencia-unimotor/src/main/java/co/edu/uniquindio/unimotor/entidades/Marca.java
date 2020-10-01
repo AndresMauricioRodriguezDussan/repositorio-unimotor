@@ -8,7 +8,8 @@ import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Marca
- *
+ * @author Andres Mauricio Rodriguez Dussan
+ * @date 1/10/2020
  */
 @Entity
 
@@ -29,7 +30,14 @@ public class Marca implements Serializable {
 
 	public Marca() {
 		super();
-	}   
+	}
+	
+	public Marca(String id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
 	public List<Modelo> getModelos() {
 		return modelos;
 	}

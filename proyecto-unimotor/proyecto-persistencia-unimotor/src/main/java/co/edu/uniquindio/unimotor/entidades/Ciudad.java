@@ -8,7 +8,8 @@ import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Ciudad
- *
+ * @author Andres Mauricio Rodriguez Dussan
+ * @date 1/10/2020
  */
 @Entity
 public class Ciudad implements Serializable {
@@ -33,7 +34,12 @@ public class Ciudad implements Serializable {
 		super();
 	}   
 	
-	
+	public Ciudad(String id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}

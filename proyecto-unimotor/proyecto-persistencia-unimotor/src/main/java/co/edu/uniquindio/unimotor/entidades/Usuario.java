@@ -9,7 +9,8 @@ import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Usuario
- *
+ * @author Andres Mauricio Rodriguez Dussan
+ * @date 1/10/2020
  */
 @Entity
 
@@ -54,6 +55,17 @@ public class Usuario implements Serializable {
 		super();
 	}
 	
+	public Usuario(String id, String nombre, String correo, String contrasena, String direccion, Ciudad ciudad) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.correo = correo;
+		this.contrasena = contrasena;
+		this.direccion = direccion;
+
+		this.ciudad = ciudad;
+	}
+
 	public Map<String, Integer> getTelefonos() {
 		return telefonos;
 	}

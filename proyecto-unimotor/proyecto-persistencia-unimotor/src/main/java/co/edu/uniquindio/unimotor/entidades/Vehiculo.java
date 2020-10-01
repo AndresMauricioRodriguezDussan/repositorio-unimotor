@@ -8,7 +8,8 @@ import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Vehiculo
- *
+ * @author Andres Mauricio Rodriguez Dussan
+ * @date 1/10/2020
  */
 @Entity
 
@@ -77,6 +78,24 @@ public class Vehiculo implements Serializable {
 
 	public Vehiculo() {
 		super();
+	}
+
+	public Vehiculo(String id, double precio, String descripcion, int kilometraje, int anio, Color color,
+			TipoCombustible tipoCombustible, TipoVehiculo tipoVehiculo, Transmision transmision, Modelo modelo,
+			Ciudad ciudad, Usuario usuario) {
+		super();
+		this.id = id;
+		this.precio = precio;
+		this.descripcion = descripcion;
+		this.kilometraje = kilometraje;
+		this.anio = anio;
+		this.color = color;
+		this.tipoCombustible = tipoCombustible;
+		this.tipoVehiculo = tipoVehiculo;
+		this.transmision = transmision;
+		this.modelo = modelo;
+		this.ciudad = ciudad;
+		this.usuario = usuario;
 	}
 
 	public Modelo getModelo() {
