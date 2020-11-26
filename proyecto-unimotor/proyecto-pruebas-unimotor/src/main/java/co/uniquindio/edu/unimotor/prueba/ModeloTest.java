@@ -4,9 +4,12 @@ package co.uniquindio.edu.unimotor.prueba;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.persistence.UsingDataSet;
@@ -22,7 +25,6 @@ import org.junit.runner.RunWith;
 
 import co.edu.uniquindio.unimotor.entidades.Caracteristica;
 import co.edu.uniquindio.unimotor.entidades.Ciudad;
-import co.edu.uniquindio.unimotor.entidades.Color;
 import co.edu.uniquindio.unimotor.entidades.Favorito;
 import co.edu.uniquindio.unimotor.entidades.Marca;
 import co.edu.uniquindio.unimotor.entidades.Modelo;
@@ -182,7 +184,7 @@ public class ModeloTest {
 	@UsingDataSet({"caracteristica.json"})
 	public void registrarCaracteristicaTest() {
 		
-		Caracteristica c= new Caracteristica("005","descapotable");
+		Caracteristica c= new Caracteristica(5,"descapotable");
 		entityManager.persist(c);
 		
 		Caracteristica cRegistrado=entityManager.find(Caracteristica.class,"005");
@@ -198,7 +200,7 @@ public class ModeloTest {
 	@UsingDataSet({"ciudad.json"})
 	public void registrarCiudadTest() {
 		
-		Ciudad c= new Ciudad("005","Cartagena");
+		Ciudad c= new Ciudad(5,"Cartagena");
 		entityManager.persist(c);
 		
 		Ciudad cRegistrado=entityManager.find(Ciudad.class,"005");
@@ -217,7 +219,7 @@ public class ModeloTest {
 		Usuario u = entityManager.find(Usuario.class,"0001");
 		Vehiculo v = entityManager.find(Vehiculo.class,"0003");
 		
-		Favorito f= new Favorito("10005", u, v);
+		Favorito f= new Favorito(5, u, v);
 		entityManager.persist(f);
 		
 		Favorito fRegistrado=entityManager.find(Favorito.class,"10005");
@@ -233,7 +235,7 @@ public class ModeloTest {
 	@UsingDataSet({"marca.json"})
 	public void registrarMarcaTest() {
 		
-		Marca m= new Marca("004","Ford");
+		Marca m= new Marca("Ford");
 		entityManager.persist(m);
 		
 		Marca mRegistrado=entityManager.find(Marca.class,"004");
@@ -251,7 +253,7 @@ public class ModeloTest {
 		
 		Marca marca=entityManager.find(Marca.class, "003");
 		
-		Modelo m= new Modelo("0005","Camaro", marca);
+		Modelo m= new Modelo("Camaro", marca);
 		entityManager.persist(m);
 		
 		Modelo mRegistrado=entityManager.find(Modelo.class,"0005");
@@ -270,7 +272,7 @@ public class ModeloTest {
 		Usuario u = entityManager.find(Usuario.class,"0001");
 		Vehiculo v = entityManager.find(Vehiculo.class,"0003");
 		
-		Pregunta p= new Pregunta("1237","el vehiculo tiene parabrisas trasero?",new Date(), v , u);
+		Pregunta p= new Pregunta("el vehiculo tiene parabrisas trasero?",new Date(), v , u);
 		entityManager.persist(p);
 		
 		Pregunta pRegistrado=entityManager.find(Pregunta.class,"1237");
@@ -288,7 +290,7 @@ public class ModeloTest {
 		
 		Pregunta p=entityManager.find(Pregunta.class,"1236");
 		
-		Respuesta r= new Respuesta("0005","no tiene ningun sistema de sonido",new Date(), p) ;
+		Respuesta r= new Respuesta(5,"no tiene ningun sistema de sonido",new Date(), p) ;
 		entityManager.persist(r);
 		
 		Respuesta rRegistrado=entityManager.find(Respuesta.class,"0005");
@@ -306,7 +308,10 @@ public class ModeloTest {
 		
 		Ciudad c = entityManager.find(Ciudad.class,"003");
 		
-		Usuario u=new Usuario("0005","jose","jose@email.com","0005",null, c);
+		Map<String,String> telefonos = new HashMap<String, String>();
+    	telefonos.put("celular","3122867662");
+		
+		Usuario u=new Usuario("Andres","andres@gmail.com","andres01","calle 123",telefonos,c);
 		entityManager.persist(u);
 		
 		Usuario uRegistrado=entityManager.find(Usuario.class,"0005");
@@ -322,12 +327,13 @@ public class ModeloTest {
 	@UsingDataSet({"modelo.json","usuario.json","vehiculo.json","ciudad.json"})
 	public void registrarVehiculoTest() {
 		
-		Usuario u = entityManager.find(Usuario.class,"0001");
+		/*Usuario u = entityManager.find(Usuario.class,"0001");
 		Modelo m = entityManager.find(Modelo.class, "0002");
 		Ciudad c= entityManager.find(Ciudad.class, "004");
 		
 		
-		Vehiculo v= new Vehiculo("0005",520000000,null,0,2020, Color.NEGRO, TipoCombustible.GASOLINA, TipoVehiculo.CARRO, Transmision.MECANICA, m, c, u);
+		Vehiculo v= new Vehiculo(5,520000000,null,0,2020, Color.NEGRO, TipoCombustible.GASOLINA, TipoVehiculo.CARRO, Transmision.MECANICA, m, c, u);*/
+		Vehiculo v = new Vehiculo();
 		entityManager.persist(v);
 		
 		Vehiculo vRegistrado=entityManager.find(Vehiculo.class,"0005");
@@ -648,5 +654,6 @@ public class ModeloTest {
 		Vehiculo vActualizado=entityManager.find(Vehiculo.class,"0003");
 		Assert.assertEquals("es capaz de desarrollar desde 163 hasta 258 caballos.",vActualizado.getDescripcion());
 	}
+
 }
 

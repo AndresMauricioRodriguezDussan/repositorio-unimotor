@@ -12,13 +12,17 @@ import javax.persistence.*;
  * @date 1/10/2020
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "TODOS_MARCAS", query = "select m from Marca m")
+})
 
 public class Marca implements Serializable {
 
 	   
 	@Id
-	@Column(name="id",length=100)
-	private String id;
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="id")
+	private Integer id;
 	
 	@Column(name="nombre",nullable=false,length=150)
 	private String nombre;
@@ -32,9 +36,8 @@ public class Marca implements Serializable {
 		super();
 	}
 	
-	public Marca(String id, String nombre) {
+	public Marca(String nombre) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 	}
 
@@ -44,11 +47,11 @@ public class Marca implements Serializable {
 	public void setModelos(List<Modelo> modelos) {
 		this.modelos = modelos;
 	}
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public String getNombre() {
@@ -80,6 +83,11 @@ public class Marca implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Marca [id=" + id + ", nombre=" + nombre + "]";
 	}
    
 	

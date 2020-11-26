@@ -13,13 +13,18 @@ import javax.persistence.*;
  * @date 1/10/2020
  */
 @Entity
-
+@NamedQueries({
+	@NamedQuery(name = "TODOS_PREGUNTAS", query = "select P from Pregunta p"),
+	@NamedQuery(name = "LISTA_PREGUNTAS_VEHICULO", query = "select p from Pregunta p where p.vehiculo.id = :id"),
+	@NamedQuery(name = "LISTA_RESPUESTAS_PREGUNTA" , query="select r from Pregunta p join p.respuestas r where p.id= :id")
+})
 public class Pregunta implements Serializable {
 
 	   
 	@Id
-	@Column(name="id",length=10)
-	private String id;
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="id")
+	private Integer id;
 	
 	@Column(name="descripcion",nullable=false)
 	private String descripcion;
@@ -45,9 +50,8 @@ public class Pregunta implements Serializable {
 		super();
 	}
 	
-	public Pregunta(String id, String descripcion, Date fecha, Vehiculo vehiculo, Usuario usuario) {
+	public Pregunta (String descripcion, Date fecha, Vehiculo vehiculo, Usuario usuario) {
 		super();
-		this.id = id;
 		this.descripcion = descripcion;
 		this.fecha = fecha;
 		this.vehiculo = vehiculo;
@@ -72,11 +76,11 @@ public class Pregunta implements Serializable {
 	public void setRespuestas(List<Respuesta> respuestas) {
 		this.respuestas = respuestas;
 	}
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public String getDescripcion() {
@@ -115,5 +119,12 @@ public class Pregunta implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Pregunta [id=" + id + ", descripcion=" + descripcion + ", fecha=" + fecha + ", vehiculo=" + vehiculo
+				+ ", usuario=" + usuario + "]";
+	}
    
+	
 }

@@ -10,13 +10,17 @@ import javax.persistence.*;
  * @date 1/10/2020
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "TODOS_FAVORITOS", query = "select f from Favorito f")
+})
 
 public class Favorito implements Serializable {
 
 	   
 	@Id
-	@Column(name ="id",length=10)
-	private String id;
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name ="id")
+	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name="usuario_id",nullable=false)
@@ -33,7 +37,7 @@ public class Favorito implements Serializable {
 		super();
 	}
 	
-	public Favorito(String id, Usuario usuario, Vehiculo vehiculo) {
+	public Favorito(Integer id, Usuario usuario, Vehiculo vehiculo) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
@@ -52,10 +56,10 @@ public class Favorito implements Serializable {
 	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
 	}
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	@Override
@@ -81,5 +85,12 @@ public class Favorito implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Favorito [id=" + id + ", usuario=" + usuario + ", vehiculo=" + vehiculo + "]";
+	}
+	
+	
    
 }

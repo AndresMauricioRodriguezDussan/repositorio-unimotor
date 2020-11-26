@@ -12,12 +12,15 @@ import javax.persistence.*;
  * @date 1/10/2020
  */
 @Entity
-
+@NamedQueries({
+	@NamedQuery(name = "LISTA_CARACTERISTICAS", query = "select c from Caracteristica c")
+})
 public class Caracteristica implements Serializable {
 
 	@Id
-	@Column(name="id",length=100)
-	private String id;
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="id")
+	private Integer id;
 	
 	@Column(name="nombre",nullable=false,length=150)
 	private String nombre;
@@ -31,7 +34,7 @@ public class Caracteristica implements Serializable {
 		super();
 	}
 	
-	public Caracteristica(String id, String nombre) {
+	public Caracteristica(Integer id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -46,11 +49,11 @@ public class Caracteristica implements Serializable {
 	}
 
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public String getNombre() {
@@ -88,11 +91,13 @@ public class Caracteristica implements Serializable {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Caracteristica [id=" + id + ", nombre=" + nombre + ", vehiculos=" + vehiculos + "]";
+		return "Caracteristica [id=" + id + ", nombre=" + nombre + "]";
 	}
+
+
+
    
 	
 }

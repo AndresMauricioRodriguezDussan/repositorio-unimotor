@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="primeflex.css" />
+	<h:outputScript library="js" name="script.js" />
+</h:head>
+
+<ui:composition template="/WEB-INF/template.xhtml">
+	<ui:define name="title">#{detalleVehiculoBean.vehiculo.nombre}</ui:define>
+	<ui:define name="content">
+
+		<div class="p-grid nested-grid">
+
+			<div class="p-col-7">
+				<div class="box box-stretched">
+
+					<p:galleria var="imagen"
+						value="#{detalleVehiculoBean.vehiculo.fotos}" panelHeight="425">
+						<p:graphicImage url="/../unimotor/#{imagen}"
+							alt="image Description for #{imagen}" title="#{imagen}" />
+					</p:galleria>
+
+				</div>
+			</div>
+
+			<div class="p-col-5">
+				<div class="p-grid">
+					<div class="box">
+						<h1>#{detalleVehiculoBean.vehiculo.nombre}</h1>
+						<h:form>
+							<p:toggleSwitch value="#{detalleVehiculoBean.favorito}">
+								<p:ajax listener="#{detalleVehiculoBean.vehiculo.precio}" />
+							</p:toggleSwitch>
+						</h:form>
+						<h2>Precio : $ #{detalleVehiculoBean.vehiculo.precio}</h2>
+					</div>
+					<div class="box">
+						<h3>Kilometraje : #{detalleVehiculoBean.vehiculo.kilometraje}</h3>
+						<h3>Vendedor : #{detalleVehiculoBean.vehiculo.usuario.nombre}</h3>
+						<h3>Ciudad : #{detalleVehiculoBean.vehiculo.ciudad.nombre}</h3>
+					</div>
+					<p:dataList
+						emptyMessage="No hay caracteristicas asociadas al vehiculo"
+						styleClass="lista-carac"
+						value="#{detalleVehiculoBean.vehiculo.caracteristicas}"
+						var="caracteristica">
+						<f:facet name="header">Caracteristicas:</f:facet>
+						<h:outputText value="#{caracteristica.nombre}" />
+					</p:dataList>
+				</div>
+			</div>
+
+		</div>
+
+		<br> <p:panel header="Descripcion">
+				<p>#{detalleVehiculoBean.vehiculo.descripcion}</p>
+			</p:panel> </br>
+
+		<br> <p:panel header="nueva pregunta">
+				<h:form>
+					<h:panelGrid columns="2" cellpadding="3">
+						<p:inputTextarea value="#{detalleVehiculoBean.pregunta}"
+							required="true" style="width:450px;height:300px" />
+						<p:commandButton value="Preguntar"
+							action="#{detalleVehiculoBean.hacerPregunta}"
+							update="@form , lista-c" />
+					</h:panelGrid>
+					<p:growl for="pregunta-vehiculo" showDetail="true"/>
+				</h:form>
+			</p:panel> </br>
+
+		<p:dataList id="lista-c"
+			value="#{detalleVehiculoBean.vehiculo.preguntas}" var="pregunta"
+			emptyMessage="No hay preguntas" type="definition">
+			<f:facet name="header">Preguntas</f:facet>
+			<h:panelGrid columns="1" style="width:100%">
+				<p:outputPanel>
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputText value="#{pregunta.persona.nombre}"
+							style="font-weight: bold" />
+						<h:outputText value="#{pregunta.descripcion}" />
+						<h:outputText value="#{pregunta.fecha}" />
+					</h:panelGrid>
+				</p:outputPanel>
+			</h:panelGrid>
+		</p:dataList>
+
+	</ui:define>
+</ui:composition>
+</html>

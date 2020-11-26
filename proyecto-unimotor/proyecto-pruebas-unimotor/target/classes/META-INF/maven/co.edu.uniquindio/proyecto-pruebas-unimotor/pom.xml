@@ -90,5 +90,10 @@
 			<artifactId>proyecto-persistencia-unimotor</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>co.edu.uniquindio</groupId>
+			<artifactId>proyecto-negocio-unimotor</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

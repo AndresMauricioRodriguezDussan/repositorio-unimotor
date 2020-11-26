@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd" version="7">
+  <description>Proyecto de despliegue de los diferentes modulos del aplicativo en el servidor de aplicaciones</description>
+  <display-name>proyecto-ear</display-name>
+  <module id="EJB_co.edu.uniquindio.proyecto-negocio-unimotor">
+    <ejb>proyecto-negocio-unimotor.jar</ejb>
+  </module>
+  <module id="WAR_co.edu.uniquindio.proyecto-web-unimotor">
+    <web>
+      <web-uri>proyecto-web-unimotor.war</web-uri>
+      <context-root>/proyecto-web-unimotor</context-root>
+    </web>
+  </module>
+  <library-directory>lib</library-directory>
+</application>

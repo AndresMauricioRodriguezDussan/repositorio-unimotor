@@ -2,9 +2,14 @@ package co.edu.uniquindio.unimotor.entidades;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 /**
  * Entity implementation class for Entity: Vehiculo
@@ -12,29 +17,60 @@ import javax.persistence.*;
  * @date 1/10/2020
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "TODOS_VEHICULOS_TRANSMISION" , query = "select v from Vehiculo v where v.transmision = :transmision"),
+	@NamedQuery(name = "TODOS_VEHICULOS_ANIO" , query = "select v from Vehiculo v where v.anio between :inicio and :fin"),
+	@NamedQuery(name = "MODELO_VEHICULO_PLACA" , query = "select v.modelo.nombre , v.precio , v.anio from Vehiculo v where v.placa = :placa"),
 
+	@NamedQuery(name = "LISTA_VEHICULOS", query = "select v from Vehiculo v"),
+	@NamedQuery(name = "BUSCAR_VEHICULO_PLACA" , query = "select v from Vehiculo v where v.placa = :placa"),
+	@NamedQuery(name = "LISTA_VEHICULO_NOMBRE", query = "select v from Vehiculo v where v.nombre like :nombre" ),
+	@NamedQuery(name = "LISTA_CARACTERISTICAS_VEHICULO" , query="select c from Vehiculo v join v.caracteristicas c where v.id= :id")
+	
+})
 public class Vehiculo implements Serializable {
 
 	   
 	@Id
-	@Column(name="id",length=10)
-	private String id;
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="id")
+	private Integer id;
 	
+	@Size(max=100, message="el nombre no puede tener mas de 100 caracteres")
+	@NotBlank(message = "El nombre no puede estar vacio")
+	@Column(name="nombre",nullable=false,length=100)
+	private String nombre;
+	
+	@Size(max=6, message="la placa no puede tener mas de 6 caracteres")
+	@NotBlank(message = "La placa no puede estar vacia")
+	@Column(name="placa",nullable=false,length=6)
+	private String placa;
+	
+	@NotNull(message = "El precio no puede estar vacio")
+	@Positive(message = "El precio no puede ser negativo o 0.0")
 	@Column(name="precio",nullable=false)
 	private double precio;
 	
-	@Column(name="descripcion")
+	@Size(max=255, message="la placa no puede tener mas de 255 caracteres")
+	@Column(name="descripcion",length=255)
 	private String descripcion;
 	
+	@NotNull(message = "El kilometraje no puede estar vacio")
 	@Column(name="kilometraje",nullable=false)
 	private int kilometraje;
 	
+	@Positive(message = "El año no puede ser negativo o 0")
 	@Column(name="anio",nullable=false)
 	private int anio;
 	
-	@Enumerated(EnumType.STRING) 
-	@JoinColumn(name="color",nullable=false)
-	private Color color;
+	@Size(max=20, message="El color no puede tener mas de 20 caracteres")
+	@NotBlank(message = "El color no puede estar vacio")
+	@Column(name="color",nullable=false ,length=20)
+	private String color;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="fecha_publicacion",nullable=false)
+	private Date fechaPublicacion;
 	
 	@Enumerated(EnumType.STRING) 
 	@JoinColumn(name="tipo_combustible",nullable=false)
@@ -80,11 +116,15 @@ public class Vehiculo implements Serializable {
 		super();
 	}
 
-	public Vehiculo(String id, double precio, String descripcion, int kilometraje, int anio, Color color,
-			TipoCombustible tipoCombustible, TipoVehiculo tipoVehiculo, Transmision transmision, Modelo modelo,
-			Ciudad ciudad, Usuario usuario) {
+	
+
+	public Vehiculo(Integer id, String nombre, String placa, double precio, String descripcion, int kilometraje,
+			int anio, String color, TipoCombustible tipoCombustible, TipoVehiculo tipoVehiculo, Transmision transmision,
+			Modelo modelo, Ciudad ciudad, Usuario usuario) {
 		super();
 		this.id = id;
+		this.nombre = nombre;
+		this.placa = placa;
 		this.precio = precio;
 		this.descripcion = descripcion;
 		this.kilometraje = kilometraje;
@@ -96,6 +136,37 @@ public class Vehiculo implements Serializable {
 		this.modelo = modelo;
 		this.ciudad = ciudad;
 		this.usuario = usuario;
+	}
+	
+	public String getFotoPrincipal() {
+		if(!fotos.isEmpty()) {
+			return fotos.get(0);
+		}
+		return "default.png";
+	}
+
+	public Date getFechaPublicacion() {
+		return fechaPublicacion;
+	}
+
+	public void setFechaPublicacion(Date fechaPublicacion) {
+		this.fechaPublicacion = fechaPublicacion;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
 	}
 
 	public Modelo getModelo() {
@@ -146,11 +217,12 @@ public class Vehiculo implements Serializable {
 		this.caracteristicas = caracteristicas;
 	}
 
-	public Color getColor() {
+	
+	public String getColor() {
 		return color;
 	}
 
-	public void setColor(Color color) {
+	public void setColor(String color) {
 		this.color = color;
 	}
 
@@ -186,11 +258,11 @@ public class Vehiculo implements Serializable {
 		this.fotos = fotos;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public double getPrecio() {
@@ -246,5 +318,21 @@ public class Vehiculo implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Vehiculo [id=" + id + ", nombre=" + nombre + ", placa=" + placa + ", precio=" + precio
+				+ ", descripcion=" + descripcion + ", kilometraje=" + kilometraje + ", anio=" + anio + ", color="
+				+ color + ", tipoCombustible=" + tipoCombustible + ", tipoVehiculo=" + tipoVehiculo + ", transmision="
+				+ transmision + ", modelo=" + modelo + ", ciudad=" + ciudad + ", usuario=" + usuario + "]";
+	}
+
+	
+
+
+
+	
+	
+	
    
 }

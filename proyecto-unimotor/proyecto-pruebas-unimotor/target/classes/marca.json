@@ -1,19 +1,19 @@
 {
 	"marca":[
 		{
-			"id":"001",
+			"id":1,
 			"nombre":"Kia"
 		},
 		{
-			"id":"002",
+			"id":2,
 			"nombre":"Volkswagen"
 		},
 		{
-			"id":"003",
+			"id":3,
 			"nombre":"Chevrolet"
 		},
 		{
-			"id":"010",
+			"id":4,
 			"nombre":"Ducati"
 		}
 	]

@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * Entity implementation class for Entity: Usuario
@@ -13,28 +16,48 @@ import javax.persistence.*;
  * @date 1/10/2020
  */
 @Entity
-
+@NamedQueries({
+	@NamedQuery(name = "TODOS_USUARIOS", query = "select u from Usuario u"),
+	@NamedQuery(name= "LISTA_FAVORITOS_USUARIO" , query = "select f.vehiculo from Usuario u , IN (u.favoritos) f where u.correo = :correo"),
+	@NamedQuery(name = "LISTA_FAVORITOS_USUARIO_2" , query = "select f.vehiculo.nombre , u.nombre from Usuario u , IN (u.favoritos) f where u.correo = :correo"),
+	@NamedQuery(name = "LISTA_VEHICULOS_USUARIO" , query = "select u.correo, v.nombre  from Usuario u left JOIN u.vehiculos v"),
+	
+	@NamedQuery(name = "CANTIDAD_USUARIOS", query = "select count(u) from Usuario u"),
+	@NamedQuery(name = "BUSCAR_CORREO" , query = "select u from Usuario u where u.correo = :correo"),
+	@NamedQuery(name = "AUTENTICAR_USUARIO", query = "select u from Usuario u where u.correo = :correo and u.contrasena = :contrasena")
+	
+	
+})
 public class Usuario implements Serializable {
 		   
 	@Id
-	@Column(name="id",length=10)
-	private String id;
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="id")
+	private Integer id;
 	
+	@Size(max=100, message="el nombre no puede tener mas de 100 caracteres")
+	@NotBlank(message = "El nombre no puede estar vacio")
 	@Column(name="nombre",length=100,nullable=false)
 	private String nombre;
 	
-	@Column(name="correo",nullable=false,unique=true)
+	@Email
+	@Size(min=5, max=150, message="el email debe tener entre 5 y 150 caracteres")
+	@NotBlank(message = "El correo no puede estar vacio")
+	@Column(name="correo",length=150,nullable=false,unique=true)
 	private String correo;
 	
+	@Size(max=30)
+	@NotBlank(message = "La contraseña no puede estar vacia")
 	@Column(name="contrasena",length=30,nullable=false)
 	private String contrasena;
 	
-	@Column(name="direccion",length=150)
+	@Size(max=250)
+	@Column(name="direccion",length=250)
 	private String direccion;
 	
 	@ElementCollection
 	@JoinColumn(name="telefonos_usuario",nullable=false)
-	private Map<String,Integer> telefonos;
+	private Map<String,String> telefonos;
 
 	@ManyToOne
 	@JoinColumn(name="ciudad_id",nullable=false)
@@ -55,22 +78,22 @@ public class Usuario implements Serializable {
 		super();
 	}
 	
-	public Usuario(String id, String nombre, String correo, String contrasena, String direccion, Ciudad ciudad) {
+	public Usuario(String nombre, String correo, String contrasena, String direccion, Map<String, String> telefonos,
+			Ciudad ciudad) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.correo = correo;
 		this.contrasena = contrasena;
 		this.direccion = direccion;
-
+		this.telefonos = telefonos;
 		this.ciudad = ciudad;
 	}
 
-	public Map<String, Integer> getTelefonos() {
+	public Map<String, String> getTelefonos() {
 		return telefonos;
 	}
 
-	public void setTelefonos(Map<String, Integer> telefonos) {
+	public void setTelefonos(Map<String, String> telefonos) {
 		this.telefonos = telefonos;
 	}
 
@@ -113,10 +136,10 @@ public class Usuario implements Serializable {
 		this.nombre = nombre;
 	}   
 	
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	
@@ -168,5 +191,12 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", correo=" + correo + ", contrasena=" + contrasena
+				+ ", direccion=" + direccion + ", ciudad=" + ciudad + "]";
+	}
+	
 	
 }

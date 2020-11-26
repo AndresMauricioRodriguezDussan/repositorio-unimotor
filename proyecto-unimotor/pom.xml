@@ -67,5 +67,8 @@
 	<modules>
 		<module>proyecto-persistencia-unimotor</module>
 		<module>proyecto-pruebas-unimotor</module>
+		<module>proyecto-ear</module>
+		<module>proyecto-negocio-unimotor</module>
+		<module>proyecto-web</module>
 	</modules>
 </project>

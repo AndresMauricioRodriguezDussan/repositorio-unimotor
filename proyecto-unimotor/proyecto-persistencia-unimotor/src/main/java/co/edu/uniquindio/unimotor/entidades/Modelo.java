@@ -12,13 +12,17 @@ import javax.persistence.*;
  * @date 1/10/2020
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "LISTA_MODELOS", query = "select m from Modelo m")
+})
 
 public class Modelo implements Serializable {
 
 	   
 	@Id
-	@Column(name="id",length=100)
-	private String id;
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="id")
+	private Integer id;
 	
 	@Column(name="nombre",nullable=false,length=150)
 	private String nombre;
@@ -36,18 +40,17 @@ public class Modelo implements Serializable {
 		super();
 	}
 	
-	public Modelo(String id, String nombre, Marca marca) {
+	public Modelo(String nombre, Marca marca) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.marca = marca;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public String getNombre() {
@@ -57,6 +60,19 @@ public class Modelo implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public String getInfo() {
+		return nombre+" - "+marca.getNombre();
+	}
+	
+	public Marca getMarca() {
+		return marca;
+	}
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -79,6 +95,11 @@ public class Modelo implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Modelo [id=" + id + ", nombre=" + nombre + ", marca=" + marca + "]";
 	}
    
 	

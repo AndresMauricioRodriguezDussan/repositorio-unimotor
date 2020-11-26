@@ -1,19 +1,19 @@
 {
 	"caracteristica":[
 		{
-			"id":"001",
+			"id":1,
 			"nombre":"GPS"
 		},
 		{
-			"id":"002",
+			"id":2,
 			"nombre":"frenos ABS"
 		},
 		{
-			"id":"003",
+			"id":3,
 			"nombre":"Alarma"
 		},
 		{
-			"id":"004",
+			"id":4,
 			"nombre":"Airbags"
 		}
 	]

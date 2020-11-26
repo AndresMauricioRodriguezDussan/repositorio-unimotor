@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Registrar nuevo usuario</ui:define>
+	<ui:define name="content">
+
+		<p:panel header="Registro usuario nuevo">
+			<h:form>
+				<h:panelGrid columns="3" cellpading="10">
+
+					<p:outputLabel for="nombre_usuario" value="Nombre:" />
+					<p:inputText id="nombre_usuario"
+						value="#{usuarioBean.usuario.nombre}" required="true"
+						validatorMessage="el nombre no puede tener mas de 100 caracteres">
+						<f:validateLength maximum="100" />
+					</p:inputText>
+					<p:message for="nombre_usuario" />
+
+					<p:outputLabel for="correo_usuario" value="Correo:" />
+					<p:inputText id="correo_usuario"
+						value="#{usuarioBean.usuario.correo}" required="true"
+						validatorMessage="el email debe tener entre 5 y 150 caracteres">
+						<f:validateLength maximum="150" minimum="5" />
+					</p:inputText>
+					<p:message for="correo_usuario" />
+
+					<p:outputLabel for="contrasena_usuario" value="Contraseña:" />
+					<p:password id="contrasena_usuario"
+						value="#{usuarioBean.usuario.contrasena}" required="true"
+						validatorMessage="la contraseña no puede tener mas de 30 caracteres">
+						<f:validateLength maximum="30" />
+					</p:password>
+					<p:message for="contrasena_usuario" />
+
+					<p:outputLabel for="direccion_usuario" value="Direccion:" />
+					<p:inputText id="direccion_usuario"
+						value="#{usuarioBean.usuario.direccion}"
+						validatorMessage="la direccion no puede tener mas de 250 caracteres">>
+				<f:validateLength maximum="250" />
+					</p:inputText>
+					<p:message for="direccion_usuario" />
+
+					<p:outputLabel for="ciudad_usuario" value="ciudad" />
+					<p:selectOneMenu id="ciudad_usuario"
+						value="#{usuarioBean.usuario.ciudad}" required="true"
+						converter="#{ciudadConverter}">
+						<f:selectItem itemLabel="seleccione una ciudad"
+							noSelectionOption="true" />
+						<f:selectItems value="#{usuarioBean.ciudades}" var="ciudad"
+							itemLabel="#{ciudad.nombre}" />
+					</p:selectOneMenu>
+					<p:message for="ciudad_usuario" />
+				</h:panelGrid>
+
+				<p:commandButton value="Registrar"
+					action="#{usuarioBean.registrarUsuario}"
+					update="@form,mensajes_registro_usuarios" />
+
+			</h:form>
+		</p:panel>
+		<p:growl id="mensajes_registro_usuarios" for="registro_usuarios"
+			showDetail="true" />
+	</ui:define>
+</ui:composition>
+</html>

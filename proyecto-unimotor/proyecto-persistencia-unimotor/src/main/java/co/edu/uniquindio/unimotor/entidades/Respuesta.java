@@ -12,13 +12,16 @@ import javax.persistence.*;
  * @date 1/10/2020
  */
 @Entity
-
+@NamedQueries({
+	@NamedQuery(name = "TODOS_RESPUESTAS", query = "select r from Respuesta r")
+})
 public class Respuesta implements Serializable {
 
 	   
 	@Id
-	@Column(name="id",length=100)
-	private String id;
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="id")
+	private Integer id;
 	
 	@Column(name="descripcion",nullable=false)
 	private String descripcion;
@@ -37,7 +40,7 @@ public class Respuesta implements Serializable {
 		super();
 	}
 	
-	public Respuesta(String id, String descripcion, Date fecha, Pregunta pregunta) {
+	public Respuesta(Integer id, String descripcion, Date fecha, Pregunta pregunta) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
@@ -57,11 +60,11 @@ public class Respuesta implements Serializable {
 	public void setPregunta(Pregunta pregunta) {
 		this.pregunta = pregunta;
 	}
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public String getDescripcion() {
@@ -93,6 +96,12 @@ public class Respuesta implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Respuesta [id=" + id + ", descripcion=" + descripcion + ", fecha=" + fecha + ", pregunta=" + pregunta
+				+ "]";
 	}
    
 }

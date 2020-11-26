@@ -1,59 +1,59 @@
 {
 	"usuario":[
 		{
-			"id":"0001",
+			"id":1,
 			"contrasena":"0001a",
 			"correo":"carlos@email.com",
 			"nombre":"Carlos",
-			"ciudad_id":"001"
+			"ciudad_id":1
 		},
 		{
-			"id":"0002",
+			"id":2,
 			"contrasena":"0002b",
 			"correo":"camila@email.com",
 			"nombre":"Camila",
-			"ciudad_id":"002"		
+			"ciudad_id":2		
 		},
 		{
-			"id":"0003",
+			"id":3,
 			"contrasena":"0003a",
 			"correo":"juan@email.com",
 			"direccion":"Avenida Siempreviva #742",
 			"nombre":"Juan",
-			"ciudad_id":"001"		
+			"ciudad_id":1		
 		},
 		{
-			"id":"0004",
+			"id":4,
 			"contrasena":"0004b",
 			"correo":"Sara@email.com",
 			"direccion":"Calle Falsa #123",
 			"nombre":"Sara",
-			"ciudad_id":"004"
+			"ciudad_id":4
 		}
 	],
 	"usuario_telefonos":[
 		{
-			"Usuario_id":"0001",
+			"Usuario_id":1,
 			"TELEFONOS":3122867662,
 			"TELEFONOS_KEY":"celular"
 		},
 		{
-			"Usuario_id":"0001",
+			"Usuario_id":1,
 			"TELEFONOS":3122867,
 			"TELEFONOS_KEY":"casa"		
 		},
 		{
-			"Usuario_id":"0002",
+			"Usuario_id":2,
 			"TELEFONOS":3122867663,
 			"TELEFONOS_KEY":"celular"
 		},
 		{
-			"Usuario_id":"0003",
+			"Usuario_id":3,
 			"TELEFONOS":30157423,
 			"TELEFONOS_KEY":"casa"
 		},
 		{
-			"Usuario_id":"0004",
+			"Usuario_id":4,
 			"TELEFONOS":313667530,
 			"TELEFONOS_KEY":"celular"
 		}		

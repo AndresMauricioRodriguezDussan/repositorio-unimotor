@@ -1,29 +1,29 @@
 {
 	"modelo":[
 		{
-			"id":"0001",
+			"id":1,
 			"nombre":"Picanto XTREME",
-			"marca_id":"001"
+			"marca_id":1
 		},
 		{
-			"id":"0002",
+			"id":2,
 			"nombre":"Rio VIBRANT",
-			"marca_id":"001"			
+			"marca_id":1			
 		},
 		{
-			"id":"0003",
+			"id":3,
 			"nombre":"Amarok TRENDLINE T",
-			"marca_id":"002"
+			"marca_id":2
 		},
 		{
-			"id":"0004",
+			"id":4,
 			"nombre":"Aveo SEDAN",
-			"marca_id":"003"
+			"marca_id":3
 		},
 		{
-			"id":"0005",
+			"id":5,
 			"nombre":"Diavel",
-			"marca_id":"010"
+			"marca_id":4
 		}
 	]
 }

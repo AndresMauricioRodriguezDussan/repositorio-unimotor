@@ -12,12 +12,16 @@ import javax.persistence.*;
  * @date 1/10/2020
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "LISTA_CIUDADES", query = "select c from Ciudad c")
+})
 public class Ciudad implements Serializable {
 
 	   
 	@Id
-	@Column(name="id",length=100)
-	private String id;
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="id")
+	private Integer id;
 	
 	@Column(name="nombre",nullable=false,length=150)
 	private String nombre;
@@ -34,7 +38,7 @@ public class Ciudad implements Serializable {
 		super();
 	}   
 	
-	public Ciudad(String id, String nombre) {
+	public Ciudad(Integer id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -56,11 +60,11 @@ public class Ciudad implements Serializable {
 		this.vehiculos = vehiculos;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public String getNombre() {
@@ -96,6 +100,11 @@ public class Ciudad implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Ciudad [id=" + id + ", nombre=" + nombre + "]";
 	}
    
 	
