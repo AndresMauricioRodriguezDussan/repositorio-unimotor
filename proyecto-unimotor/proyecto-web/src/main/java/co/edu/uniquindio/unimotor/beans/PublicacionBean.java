@@ -6,6 +6,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.annotation.ManagedProperty;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,6 +30,7 @@ public class PublicacionBean implements Serializable{
 	@ManagedProperty(value = "#{seguridadBean.usuario}")
 	private Usuario usuario;
 	
+	
 	@PostConstruct
 	public void inicializar() {
 		if(usuario!=null) {
@@ -36,6 +39,17 @@ public class PublicacionBean implements Serializable{
 		}
 	}
 	
+	public String eliminarPublicacion(Integer id) {
+		try {
+			unimotorEJB.eliminarPublicacion(id);
+			vehiculos = unimotorEJB.obtenerListaVehiculoUsuario(usuario.getId());
+			return "/usuario/misPublicaciones?faces-redirect=true";
+		} catch (Exception e) {
+			FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta",e.getMessage());
+			FacesContext.getCurrentInstance().addMessage("msj_publicacion", msj);
+		}
+		return "";
+	}
 	public String mostrar() {
 		return "/usuario/misPublicaciones?faces-redirect=true";
 	}
@@ -55,6 +69,5 @@ public class PublicacionBean implements Serializable{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
 	
 }

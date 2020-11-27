@@ -6,6 +6,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.annotation.ManagedProperty;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -39,7 +41,19 @@ public class FavoritoBean implements Serializable{
 	public String mostrar() {
 		return "/usuario/misFavorito?faces-redirect=true";
 	}
-
+	
+	public String eliminarFavorito(Integer id) {
+		try {
+			unimotorEJB.eliminarPublicacion(id);
+			vehiculos = unimotorEJB.obtenerListaVehiculoUsuario(usuario.getId());
+			return "/usuario/misPublicaciones?faces-redirect=true";
+		} catch (Exception e) {
+			FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta",e.getMessage());
+			FacesContext.getCurrentInstance().addMessage("msj_publicacion", msj);
+		}
+		return "";
+	}
+	
 	public List<Vehiculo> getVehiculos() {
 		return vehiculos;
 	}

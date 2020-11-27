@@ -37,7 +37,7 @@
 										<h:outputText styleClass="ui-icon pi pi-replay"
 											style="margin:0 auto;" />
 									</p:commandLink>
-									<p:commandLink >
+									<p:commandLink action="#{publicacionBean.eliminarPublicacion(vehiculo.id)}">
 										<h:outputText styleClass="ui-icon pi pi-ban"
 											style="margin:0 auto;" />
 									</p:commandLink>
@@ -85,7 +85,7 @@
 									<h:outputText styleClass="ui-icon pi pi-replay"
 										style="margin:0 auto;" />
 								</p:commandLink>
-								<p:commandLink >
+								<p:commandLink action="#{publicacionBean.eliminarPublicacion(vehiculo.id)}">
 									<h:outputText styleClass="ui-icon pi pi-ban"
 										style="margin:0 auto;" />
 								</p:commandLink>
@@ -96,7 +96,8 @@
 				</h:form>
 			</div>
 		</div>
-
+		<p:growl id="mensaje_eliminacion_publicacion" for="msj_publicacion"
+			showDetail="true" />
 	</ui:define>
 </ui:composition>
 </html>

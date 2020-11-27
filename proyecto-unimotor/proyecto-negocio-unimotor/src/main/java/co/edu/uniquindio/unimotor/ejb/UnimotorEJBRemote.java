@@ -68,4 +68,6 @@ public interface UnimotorEJBRemote {
 	
 	void eliminarFavorito(Usuario u,Vehiculo v) throws Exception;
 	
+	void eliminarPublicacion(Integer id) throws Exception;
+	
 }

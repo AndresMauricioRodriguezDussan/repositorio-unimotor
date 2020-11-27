@@ -268,4 +268,21 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 			throw new Exception("Es necesario definir un usuario y un vehiculo para eliminar un favorito");
 		}
 	}
+
+	@Override
+	public void eliminarPublicacion(Integer id) throws Exception {
+		if(id!=null) {
+			Vehiculo vehiculo = null;
+			try {
+				vehiculo = entityManager.find(Vehiculo.class, id);
+				entityManager.remove(vehiculo);
+			}catch(Exception e) {
+				throw new Exception("Hubo un error al eliminar la publicacion");
+			}
+		}
+		else {
+			throw new Exception("Es necesario definir una publicacion para eliminarla");
+		}
+		
+	}
 }
