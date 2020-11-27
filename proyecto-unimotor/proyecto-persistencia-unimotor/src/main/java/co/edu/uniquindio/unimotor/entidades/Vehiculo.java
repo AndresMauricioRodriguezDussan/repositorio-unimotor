@@ -25,6 +25,7 @@ import javax.validation.constraints.Size;
 	@NamedQuery(name = "LISTA_VEHICULOS", query = "select v from Vehiculo v"),
 	@NamedQuery(name = "BUSCAR_VEHICULO_PLACA" , query = "select v from Vehiculo v where v.placa = :placa"),
 	@NamedQuery(name = "LISTA_VEHICULO_NOMBRE", query = "select v from Vehiculo v where v.nombre like :nombre" ),
+	@NamedQuery(name = "LISTA_VEHICULOS_USUARIO", query = "select v from Vehiculo v where v.usuario.id = :id" ),
 	@NamedQuery(name = "LISTA_CARACTERISTICAS_VEHICULO" , query="select c from Vehiculo v join v.caracteristicas c where v.id= :id")
 	
 })

@@ -10,9 +10,11 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.io.FilenameUtils;
@@ -38,6 +40,9 @@ public class VehiculoBean implements Serializable {
 	@EJB
 	private UnimotorEJB unimotorEJB;
 	private Vehiculo vehiculo;
+	
+	@Inject
+	@ManagedProperty(value = "#{seguridadBean.usuario}")
 	private Usuario usuario;
 	private List<Ciudad> ciudades;
 	private List<Modelo> modelos;
@@ -58,8 +63,6 @@ public class VehiculoBean implements Serializable {
 		ciudades = unimotorEJB.obtenerListaCiudad();
 		modelos = unimotorEJB.obtenerListaModelo();
 		caracteristicas = unimotorEJB.obtenerListaCaracteristica();
-
-		usuario = unimotorEJB.obtenerUsuario(1);
 
 		tiposVehiculo = unimotorEJB.obtenerListaTipoVehiculo();
 		tiposCombustible = unimotorEJB.obtenerListaTipoCombustible();
@@ -167,7 +170,11 @@ public class VehiculoBean implements Serializable {
 	}
 
 	public String irARegristroVehiculo() {
-		return "registrarVehiculo?faces-redirect=true";
+		return "/usuario/registrarVehiculo?faces-redirect=true";
+	}
+	
+	public String irAEditarVehiculo() {
+		return "/usuario/editarVehiculo?faces-redirect=true";
 	}
 
 	public List<String> getFotos() {

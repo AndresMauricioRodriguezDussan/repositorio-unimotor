@@ -5,52 +5,41 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.annotation.FacesConfig;
-import javax.faces.annotation.FacesConfig.Version;
 import javax.faces.annotation.ManagedProperty;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import co.edu.uniquindio.unimotor.ejb.UnimotorEJB;
+import co.edu.uniquindio.unimotor.entidades.Usuario;
 import co.edu.uniquindio.unimotor.entidades.Vehiculo;
 
-@FacesConfig(version = Version.JSF_2_3)
 @Named
 @ViewScoped
-public class BusquedaBean implements Serializable {
-
+public class PublicacionBean implements Serializable{
 
 	@EJB
 	private UnimotorEJB unimotorEJB;
-	private String busqueda;
-	private List<Vehiculo> vehiculos;
 	private static final long serialVersionUID = 1L;
 	
+	private List<Vehiculo> vehiculos;
+	
 	@Inject
-	@ManagedProperty(value="#{param.busqueda}")
-	private String busquedaParam;
+	@ManagedProperty(value = "#{seguridadBean.usuario}")
+	private Usuario usuario;
 	
 	@PostConstruct
 	public void inicializar() {
-		if(busquedaParam!=null) {
-			vehiculos=unimotorEJB.buscarVehiculoNombre(busquedaParam);
-			buscar();
+		if(usuario!=null) {
+			vehiculos = unimotorEJB.obtenerListaVehiculoUsuario(usuario.getId());
+			mostrar();
 		}
 	}
 	
-	public String buscar() {
-		return "/resultadoBusqueda?faces-redirect=true&amp;busqueda="+busqueda;
-	}
-	
-	public String getBusqueda() {
-		return busqueda;
+	public String mostrar() {
+		return "/usuario/misPublicaciones?faces-redirect=true";
 	}
 
-	public void setBusqueda(String busqueda) {
-		this.busqueda = busqueda;
-	}
-	
 	public List<Vehiculo> getVehiculos() {
 		return vehiculos;
 	}
@@ -59,7 +48,13 @@ public class BusquedaBean implements Serializable {
 		this.vehiculos = vehiculos;
 	}
 
-	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	
 	
 }

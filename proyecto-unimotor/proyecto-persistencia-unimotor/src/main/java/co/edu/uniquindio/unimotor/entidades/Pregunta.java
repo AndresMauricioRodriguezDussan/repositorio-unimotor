@@ -16,6 +16,7 @@ import javax.persistence.*;
 @NamedQueries({
 	@NamedQuery(name = "TODOS_PREGUNTAS", query = "select P from Pregunta p"),
 	@NamedQuery(name = "LISTA_PREGUNTAS_VEHICULO", query = "select p from Pregunta p where p.vehiculo.id = :id"),
+	@NamedQuery(name = "LISTA_PREGUNTAS_USUARIO", query = "select p from Pregunta p where p.usuario.id = :id"),
 	@NamedQuery(name = "LISTA_RESPUESTAS_PREGUNTA" , query="select r from Pregunta p join p.respuestas r where p.id= :id")
 })
 public class Pregunta implements Serializable {

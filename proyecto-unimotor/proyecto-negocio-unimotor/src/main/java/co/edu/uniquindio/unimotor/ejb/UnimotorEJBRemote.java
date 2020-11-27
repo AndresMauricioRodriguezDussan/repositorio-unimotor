@@ -47,15 +47,25 @@ public interface UnimotorEJBRemote {
 	List<Modelo> obtenerListaModelo();
 
 	List<Vehiculo> obtenerListaVehiculo();
+	
+	List<Vehiculo> obtenerListaVehiculoUsuario(Integer id);
 
 	List<Caracteristica> obtenerListaCaracteristicaVehiculo(Integer id);
 	
 	List<Pregunta> obtenerListaPreguntasVehiculo(Integer id);
 	
+	List<Pregunta> obtenerListaPreguntasUsuario(Integer id);
+	
 	List<Respuesta> obtenerListaRespuestasPregunta(Integer id);
 	
 	List<Caracteristica> obtenerListaCaracteristica();
 	
+	List<Vehiculo> obtenerListaFavorito(Integer id);
+	
 	Pregunta hacerPregunta(Usuario u,Vehiculo v, String p) throws Exception;
+	
+	void guardarFavorito(Usuario u,Vehiculo v) throws Exception;
+	
+	void eliminarFavorito(Usuario u,Vehiculo v) throws Exception;
 	
 }

@@ -26,7 +26,11 @@ public class InicioBean implements Serializable {
 	}
 	
 	public String irADetalle(Integer id) {
-		return "detalleVehiculo?faces-redirect=true&amp;vehiculo="+id;
+		return "/detalleVehiculo?faces-redirect=true&amp;vehiculo="+id;
+	}
+	
+	public String irAEditar(Integer id) {
+		return "/editarVehiculo?faces-redirect=true&amp;vehiculo="+id;
 	}
 	
 	public List<Vehiculo> getVehiculos() {

@@ -64,7 +64,7 @@ public class UsuarioBean implements Serializable{
 	}
 
 	public String irARegristroUsuario() {
-		return "registrarUsuario?faces-redirect=true";
+		return "/registrarUsuario?faces-redirect=true";
 	}
 	
 }

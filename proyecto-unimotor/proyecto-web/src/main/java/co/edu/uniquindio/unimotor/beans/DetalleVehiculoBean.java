@@ -39,6 +39,8 @@ public class DetalleVehiculoBean implements Serializable{
 	private List<Caracteristica> caracteristicas;
 	private List<Respuesta> respuestas;
 	
+	@Inject
+	@ManagedProperty(value = "#{seguridadBean.usuario}")
 	private Usuario usuario;
 	
 	private static final long serialVersionUID = 1L;
@@ -61,18 +63,41 @@ public class DetalleVehiculoBean implements Serializable{
 		}
 	}
 	
-	public void hacerPregunta() {
-		Pregunta p;
-		try {
-			p = unimotorEJB.hacerPregunta(usuario,vehiculo,pregunta);
-			if(p!=null) {
-				preguntas.add(p);
+	public void hacerPregunta() {	
+			try {
+				Pregunta p = unimotorEJB.hacerPregunta(usuario,vehiculo,pregunta);
+				if(p!=null) {
+					preguntas.add(p);
+				}
+				pregunta="";
+			}catch (Exception e) {
+				FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta",e.getMessage());
+				FacesContext.getCurrentInstance().addMessage("registro_preguntas", msj);
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
+	}
+	
+	public void marcarFavorito() {
+		if(favorito) {
+			try {
+				unimotorEJB.guardarFavorito(usuario,vehiculo);
+				FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_INFO,"Alerta","¡Agregado a favoritos!");
+				FacesContext.getCurrentInstance().addMessage("registro_favoritos", msj);
+			} catch (Exception e) {
+				FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta",e.getMessage());
+				FacesContext.getCurrentInstance().addMessage("registro_favoritos", msj);
+			}
+		}
+		else {
+			try {
+				unimotorEJB.eliminarFavorito(usuario,vehiculo);
+				FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta","¡Eliminado a favoritos!");
+				FacesContext.getCurrentInstance().addMessage("registro_favoritos", msj);
+			} catch (Exception e) {
+				FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta",e.getMessage());
+				FacesContext.getCurrentInstance().addMessage("registro_favoritos", msj);
+			}
+		}
 	}
 
 	public Vehiculo getVehiculo() {

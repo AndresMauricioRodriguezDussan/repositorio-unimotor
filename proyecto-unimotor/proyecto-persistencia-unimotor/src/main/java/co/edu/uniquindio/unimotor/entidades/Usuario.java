@@ -20,7 +20,6 @@ import javax.validation.constraints.Size;
 	@NamedQuery(name = "TODOS_USUARIOS", query = "select u from Usuario u"),
 	@NamedQuery(name= "LISTA_FAVORITOS_USUARIO" , query = "select f.vehiculo from Usuario u , IN (u.favoritos) f where u.correo = :correo"),
 	@NamedQuery(name = "LISTA_FAVORITOS_USUARIO_2" , query = "select f.vehiculo.nombre , u.nombre from Usuario u , IN (u.favoritos) f where u.correo = :correo"),
-	@NamedQuery(name = "LISTA_VEHICULOS_USUARIO" , query = "select u.correo, v.nombre  from Usuario u left JOIN u.vehiculos v"),
 	
 	@NamedQuery(name = "CANTIDAD_USUARIOS", query = "select count(u) from Usuario u"),
 	@NamedQuery(name = "BUSCAR_CORREO" , query = "select u from Usuario u where u.correo = :correo"),

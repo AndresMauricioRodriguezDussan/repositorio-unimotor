@@ -11,7 +11,8 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "TODOS_FAVORITOS", query = "select f from Favorito f")
+	@NamedQuery(name = "TODOS_FAVORITOS", query = "select f from Favorito f"),
+	@NamedQuery(name = "OBTENER_LISTA_FAVORITOS_USUARIO", query = "select f.vehiculo from Favorito f where f.usuario.id = :id")
 })
 
 public class Favorito implements Serializable {
@@ -37,9 +38,8 @@ public class Favorito implements Serializable {
 		super();
 	}
 	
-	public Favorito(Integer id, Usuario usuario, Vehiculo vehiculo) {
+	public Favorito(Usuario usuario, Vehiculo vehiculo) {
 		super();
-		this.id = id;
 		this.usuario = usuario;
 		this.vehiculo = vehiculo;
 	}

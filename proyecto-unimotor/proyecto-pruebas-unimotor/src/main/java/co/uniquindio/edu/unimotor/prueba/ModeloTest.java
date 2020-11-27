@@ -219,7 +219,7 @@ public class ModeloTest {
 		Usuario u = entityManager.find(Usuario.class,"0001");
 		Vehiculo v = entityManager.find(Vehiculo.class,"0003");
 		
-		Favorito f= new Favorito(5, u, v);
+		Favorito f= new Favorito(u, v);
 		entityManager.persist(f);
 		
 		Favorito fRegistrado=entityManager.find(Favorito.class,"10005");

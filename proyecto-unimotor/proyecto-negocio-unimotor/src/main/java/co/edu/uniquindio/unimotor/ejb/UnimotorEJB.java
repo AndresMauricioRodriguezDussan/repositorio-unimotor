@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 
 import co.edu.uniquindio.unimotor.entidades.Caracteristica;
 import co.edu.uniquindio.unimotor.entidades.Ciudad;
+import co.edu.uniquindio.unimotor.entidades.Favorito;
 import co.edu.uniquindio.unimotor.entidades.Modelo;
 import co.edu.uniquindio.unimotor.entidades.Pregunta;
 import co.edu.uniquindio.unimotor.entidades.Respuesta;
@@ -162,6 +163,15 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 		TypedQuery<Vehiculo> q = entityManager.createNamedQuery("LISTA_VEHICULOS", Vehiculo.class);
 		return q.getResultList();
 	}
+	
+	@Override
+	public List<Vehiculo> obtenerListaVehiculoUsuario(Integer id) {
+		TypedQuery<Vehiculo> q = entityManager.createNamedQuery("LISTA_VEHICULOS_USUARIO", Vehiculo.class);
+		q.setParameter("id",id);
+		
+		return q.getResultList();
+	}
+	
 	@Override
 	public List<Caracteristica> obtenerListaCaracteristica() {
 		TypedQuery<Caracteristica> q = entityManager.createNamedQuery("LISTA_CARACTERISTICAS", Caracteristica.class);
@@ -183,6 +193,14 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 		
     	return q.getResultList();
 		
+	}
+	
+	@Override
+	public List<Pregunta> obtenerListaPreguntasUsuario(Integer id) {
+		TypedQuery<Pregunta> q = entityManager.createNamedQuery("LISTA_PREGUNTAS_USUARIO", Pregunta.class);
+		q.setParameter("id",id);
+		
+    	return q.getResultList();
 	}
 
 	@Override
@@ -210,4 +228,44 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 				throw new Exception("Hubo un error al registrar la pregunta");
 			}
 		}
+
+	@Override
+	public List<Vehiculo> obtenerListaFavorito(Integer id) {
+		TypedQuery<Vehiculo> q = entityManager.createNamedQuery("OBTENER_LISTA_FAVORITOS_USUARIO", Vehiculo.class);
+		q.setParameter("id",id);
+		
+    	return q.getResultList();
+	}
+	
+	@Override
+	public void guardarFavorito(Usuario u, Vehiculo v) throws Exception{
+		if(u!=null && v!=null) {
+			Favorito favorito = null;
+			try {
+				favorito = new Favorito(u, v);
+				entityManager.persist(favorito);
+			}catch(Exception e) {
+				throw new Exception("Hubo un error al registrar el favorito");
+			}
+		}
+		else {
+			throw new Exception("Es necesario definir un usuario y un vehiculo para marcar un favorito");
+		}
+	}
+
+	@Override
+	public void eliminarFavorito(Usuario u, Vehiculo v) throws Exception{
+		if(u!=null && v!=null) {
+			Favorito favorito = null;
+			try {
+				favorito = new Favorito(u, v);
+				entityManager.remove(favorito);
+			}catch(Exception e) {
+				throw new Exception("Hubo un error al eliminar el favorito");
+			}
+		}
+		else {
+			throw new Exception("Es necesario definir un usuario y un vehiculo para eliminar un favorito");
+		}
+	}
 }
