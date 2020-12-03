@@ -44,22 +44,6 @@ public class Ciudad implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-
-	public List<Vehiculo> getVehiculos() {
-		return vehiculos;
-	}
-
-	public void setVehiculos(List<Vehiculo> vehiculos) {
-		this.vehiculos = vehiculos;
-	}
-
 	public Integer getId() {
 		return this.id;
 	}

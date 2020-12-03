@@ -28,7 +28,12 @@ public class CaracteristicaConverter implements Converter<Caracteristica>, Seria
 		Caracteristica caracteristica=null;
 		
 		if(value!=null) {
-			caracteristica=unimotorEJB.obtenerCaracteristica(Integer.parseInt(value));
+			try {
+				caracteristica=unimotorEJB.obtenerCaracteristica(Integer.parseInt(value));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return caracteristica;
 	}

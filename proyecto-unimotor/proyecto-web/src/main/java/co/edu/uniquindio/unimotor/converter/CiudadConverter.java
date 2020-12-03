@@ -28,7 +28,12 @@ public class CiudadConverter implements Converter<Ciudad>, Serializable {
 		Ciudad ciudad=null;
 		
 		if(value!=null) {
-			ciudad=unimotorEJB.obtenerCiudad(Integer.parseInt(value));
+			try {
+				ciudad=unimotorEJB.obtenerCiudad(Integer.parseInt(value));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return ciudad;
 	}

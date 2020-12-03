@@ -4,17 +4,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/WEB-INF/template.xhtml">
-	<ui:define name="header">
-	    Add your header here or delete to use the default
-	</ui:define>
+
 	<ui:define name="content">
-	    Add your content here or delete to use the default
+
+		<div class="p-col-7">
+			<div class="p-grid">
+				<div class="box">
+					<h3>Nombre : #{perfilBean.usuario.nombre}</h3>
+					<h3>Direccion : #{perfilBean.usuario.direccion}</h3>
+					<h3>Ciudad : #{perfilBean.usuario.ciudad.nombre}</h3>
+					<h3>Correo : #{perfilBean.usuario.correo}</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="p-col-5">
+			<div class="p-grid">
+				<p:commandLink value="Eliminar cuenta" action="#{perfilBean.eliminarCuenta}">
+					<h:outputText styleClass="ui-icon pi pi-ban" style="margin:0 auto;" />
+				</p:commandLink>
+			</div>
+		</div>
+
+		<p:growl id="mensaje_perfil" for="perfil_msj" showDetail="true" />
 	</ui:define>
-	<ui:define name="footer">
-	    Add your footer here or delete to use the default
-	</ui:define>
+
 </ui:composition>
 </html>

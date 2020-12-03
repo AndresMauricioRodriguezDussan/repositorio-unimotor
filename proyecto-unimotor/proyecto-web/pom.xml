@@ -12,7 +12,7 @@
 	<name>Proyecto Web</name>
 	<description>Proyecto que proporciona la interfaz grafica de usuario web para los clientes del aplicativo</description>
 	<dependencies>
-	<dependency>
+		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>8.0</version>
@@ -51,6 +51,11 @@
 			<artifactId>proyecto-negocio-unimotor</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
 		</dependency>
 	</dependencies>
 </project>

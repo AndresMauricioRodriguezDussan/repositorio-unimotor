@@ -194,22 +194,6 @@ public class Vehiculo implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public List<Favorito> getFavoritos() {
-		return favoritos;
-	}
-
-	public void setFavoritos(List<Favorito> favoritos) {
-		this.favoritos = favoritos;
-	}
-
-	public List<Pregunta> getPreguntas() {
-		return preguntas;
-	}
-
-	public void setPreguntas(List<Pregunta> preguntas) {
-		this.preguntas = preguntas;
-	}
-
 	public List<Caracteristica> getCaracteristicas() {
 		return caracteristicas;
 	}

@@ -41,7 +41,7 @@ public class PublicacionBean implements Serializable{
 	
 	public String eliminarPublicacion(Integer id) {
 		try {
-			unimotorEJB.eliminarPublicacion(id);
+			unimotorEJB.eliminarVehiculo(id);
 			vehiculos = unimotorEJB.obtenerListaVehiculoUsuario(usuario.getId());
 			return "/usuario/misPublicaciones?faces-redirect=true";
 		} catch (Exception e) {

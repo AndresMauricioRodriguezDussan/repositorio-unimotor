@@ -13,7 +13,8 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "TODOS_MARCAS", query = "select m from Marca m")
+	@NamedQuery(name = "LISTA_MARCAS", query = "select m from Marca m"),
+	@NamedQuery(name = "LISTA_MARCA_NOMBRE", query = "select m from Marca m where m.nombre = :nombre")
 })
 
 public class Marca implements Serializable {
@@ -27,6 +28,7 @@ public class Marca implements Serializable {
 	@Column(name="nombre",nullable=false,length=150)
 	private String nombre;
 	
+	//Debe quitar todos los get y set de TODAS los atributos que sea @OneToMany de todas las clases
 	@OneToMany(mappedBy = "marca")
 	private List<Modelo> modelos;
 	
@@ -41,12 +43,6 @@ public class Marca implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public List<Modelo> getModelos() {
-		return modelos;
-	}
-	public void setModelos(List<Modelo> modelos) {
-		this.modelos = modelos;
-	}
 	public Integer getId() {
 		return this.id;
 	}

@@ -25,7 +25,12 @@ public class ModeloConverter implements Converter<Modelo>, Serializable {
 		Modelo modelo=null;
 		
 		if(value!=null) {
-			modelo=unimotorEJB.obtenerModelo(Integer.parseInt(value));
+			try {
+				modelo=unimotorEJB.obtenerModelo(Integer.parseInt(value));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return modelo;
 	}

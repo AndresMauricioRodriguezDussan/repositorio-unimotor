@@ -40,15 +40,6 @@ public class Caracteristica implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public List<Vehiculo> getVehiculos() {
-		return vehiculos;
-	}
-
-	public void setVehiculos(List<Vehiculo> vehiculos) {
-		this.vehiculos = vehiculos;
-	}
-
-
 	public Integer getId() {
 		return this.id;
 	}

@@ -36,6 +36,11 @@ public class PreguntaBean implements Serializable {
 		}
 	}
 	
+	public String irARespuestas(Integer id) {
+		return "/respuesta?faces-redirect=true&amp;pregunta="+id;
+
+	}
+	
 	public String mostrar() {
 		return "/usuario/misPreguntas?faces-redirect=true";
 	}

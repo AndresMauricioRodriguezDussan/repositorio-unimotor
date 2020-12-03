@@ -18,6 +18,31 @@
 	<ui:define name="title">#{detalleVehiculoBean.vehiculo.nombre}</ui:define>
 	<ui:define name="content">
 
+		<div id="fb-root"></div>
+		<script async="true" defer="true" crossorigin="anonymous"
+			src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&amp;version=v9.0&amp;appId=177038767468149&amp;autoLogAppEvents=1"
+			nonce="jXAIv3gi"></script>
+
+		<script>
+			window.twttr = (function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr
+						|| {};
+				if (d.getElementById(id))
+					return t;
+				js = d.createElement(s);
+				js.id = id;
+				js.src = "https://platform.twitter.com/widgets.js";
+				fjs.parentNode.insertBefore(js, fjs);
+
+				t._e = [];
+				t.ready = function(f) {
+					t._e.push(f);
+				};
+
+				return t;
+			}(document, "script", "twitter-wjs"));
+		</script>
+
 		<div class="p-grid nested-grid">
 
 			<div class="p-col-7">
@@ -47,6 +72,23 @@
 						<h3>Kilometraje : #{detalleVehiculoBean.vehiculo.kilometraje}</h3>
 						<h3>Vendedor : #{detalleVehiculoBean.vehiculo.usuario.nombre}</h3>
 						<h3>Ciudad : #{detalleVehiculoBean.vehiculo.ciudad.nombre}</h3>
+						<h3>Marca : #{detalleVehiculoBean.vehiculo.modelo.marca.nombre}</h3>
+						<h3>Modelo : #{detalleVehiculoBean.vehiculo.modelo.nombre}</h3>
+
+						<div class="fb-share-button"
+							data-href="https://www.uniquindio.edu.co/"
+							data-layout="button_count" data-size="large">
+							<a target="_blank"
+								href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.uniquindio.edu.co%2F&amp;src=sdkpreparse"
+								class="fb-xfbml-parse-ignore">Compartir</a>
+						</div>
+
+						<a class="twitter-share-button"
+							href="https://twitter.com/intent/tweet?text=Revisa%20este%20vehiculo"
+							data-size="large"
+							data-url="http://localhost:8080/proyecto-web-unimotor/detalleVehiculo.xhtml?vehiculo=#{detalleVehiculo.vehiculo.id}">
+							Tweet</a>
+
 					</div>
 					<p:dataList
 						emptyMessage="No hay caracteristicas asociadas al vehiculo"
@@ -79,9 +121,8 @@
 				</h:form>
 			</p:panel> </br>
 
-		<p:dataList id="lista-c"
-			value="#{detalleVehiculoBean.vehiculo.preguntas}" var="pregunta"
-			emptyMessage="No hay preguntas" type="definition">
+		<p:dataList id="lista-c" value="#{detalleVehiculoBean.preguntas}"
+			var="pregunta" emptyMessage="No hay preguntas" type="definition">
 			<f:facet name="header">Preguntas</f:facet>
 			<h:panelGrid columns="1" style="width:100%">
 				<p:outputPanel>
@@ -90,6 +131,10 @@
 							style="font-weight: bold" />
 						<h:outputText value="#{pregunta.descripcion}" />
 						<h:outputText value="#{pregunta.fecha}" />
+						<p:commandLink action="#{preguntaBean.irARespuestas(pregunta.id)}">
+							<h:outputText styleClass="ui-icon pi pi-search"
+								style="margin:0 auto;" />
+						</p:commandLink>
 					</h:panelGrid>
 				</p:outputPanel>
 			</h:panelGrid>

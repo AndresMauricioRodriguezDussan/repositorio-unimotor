@@ -71,12 +71,7 @@ public class Pregunta implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public List<Respuesta> getRespuestas() {
-		return respuestas;
-	}
-	public void setRespuestas(List<Respuesta> respuestas) {
-		this.respuestas = respuestas;
-	}
+
 	public Integer getId() {
 		return this.id;
 	}

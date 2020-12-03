@@ -55,7 +55,18 @@ public class SeguridadBean implements Serializable{
 	}
 	
 	public void enviarCorreo() {
-		
+		try {
+			Usuario u = unimotorEJB.obtenerUsuarioEmail(emailLogin);
+			
+			String asunto = "Recuperacion de contraseña";
+			String mensaje = "La contraseña del usuario: " + u.getNombre() + "es : "+ u.getContrasena();
+			String destinatario = emailLogin;
+			
+			unimotorEJB.enviarEmail(asunto,mensaje,destinatario);
+		}catch (Exception e){
+			FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta",e.getMessage());
+			FacesContext.getCurrentInstance().addMessage("mensaje_sesion", msj);
+		}
 	}
 	
 	public String cerrarSesion() {

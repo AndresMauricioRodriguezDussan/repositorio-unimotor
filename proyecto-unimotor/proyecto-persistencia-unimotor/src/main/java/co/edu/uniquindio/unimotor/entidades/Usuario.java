@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "TODOS_USUARIOS", query = "select u from Usuario u"),
+	@NamedQuery(name = "LISTA_USUARIOS", query = "select u from Usuario u"),
 	@NamedQuery(name= "LISTA_FAVORITOS_USUARIO" , query = "select f.vehiculo from Usuario u , IN (u.favoritos) f where u.correo = :correo"),
 	@NamedQuery(name = "LISTA_FAVORITOS_USUARIO_2" , query = "select f.vehiculo.nombre , u.nombre from Usuario u , IN (u.favoritos) f where u.correo = :correo"),
 	
@@ -102,30 +102,6 @@ public class Usuario implements Serializable {
 
 	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
-	}
-
-	public List<Favorito> getFavoritos() {
-		return favoritos;
-	}
-
-	public void setFavoritos(List<Favorito> favoritos) {
-		this.favoritos = favoritos;
-	}
-
-	public List<Vehiculo> getVehiculos() {
-		return vehiculos;
-	}
-
-	public void setVehiculos(List<Vehiculo> vehiculos) {
-		this.vehiculos = vehiculos;
-	}
-
-	public List<Pregunta> getPreguntas() {
-		return preguntas;
-	}
-
-	public void setPreguntas(List<Pregunta> preguntas) {
-		this.preguntas = preguntas;
 	}
 
 	public String getNombre() {
